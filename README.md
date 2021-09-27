@@ -1,9 +1,9 @@
 # WubHubBot
 
 
-##Pour commencer
+## Pour commencer
 
-###1) Créer un bot discord pour vos propres tests
+### 1) Créer un bot discord pour vos propres tests
 
 *pour éviter de se marcher dessus en voulant tester le code du bot, il est plus simple d'avoir
 chacun son propre bot et serveur de test*
@@ -26,13 +26,13 @@ sur la version web de Discord pour pouvoir créer votre bot
 
 
 
-###2) Installer nodeJS
+### 2) Installer nodeJS
 
 visitez https://nodejs.org/en/ et choisissez d'installer la version Current
 
 
 
-###3) récupérer les sources du projet
+### 3) récupérer les sources du projet
 
 Vous pouvez récupérer les sources du projet directement avec Git en ligne de commande ou vous aider de GitExtension:
 
@@ -47,7 +47,7 @@ Vous pouvez récupérer les sources du projet directement avec Git en ligne de c
 
 toutes les sources du projet ont maintenant été téléchargé dans le dossier spécifié
 
-###4) Installer les dépendances du projet
+### 4) Installer les dépendances du projet
 
 en ouvrant un CMD à la racine du projet, utilisez la commande:
 
@@ -60,7 +60,7 @@ Ce dossier est ignoré par git afin d'éviter d'alourdir le dépot git, ainsi, c
 développeur doit télécharger les dépendances du projet après avoir cloné le projet
 sur son PC*
 
-###5) Lancer le bot !
+### 5) Lancer le bot !
 
 Avant de pouvoir démarrer le bot, copiez le fichier token.json contenant le token
 de votre bot à la racine du projet
@@ -71,4 +71,4 @@ pour démarrer le bot, allez à la racine du projet et utilisez la commande
 `node index.js`
 
 
-#Voilà !
+# Voilà !
