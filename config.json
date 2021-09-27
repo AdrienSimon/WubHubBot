@@ -1,0 +1,17 @@
+{
+  "logMessage": "Bot is Online",
+  "status": "online",
+  "activity": "discord.js",
+  "activityType": "WATCHING",
+
+  "roles": [
+    {
+      "roleName": "roleId"
+    }
+  ],
+  "channels": [
+    {
+      "channelName": "channelId"
+    }
+  ]
+}
