@@ -9,6 +9,7 @@ const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 
 
 const levelSystem = require("./level.js");
+const coinFlip = require("./coinFlip.js");
 
 
 //Starting bot
@@ -22,7 +23,16 @@ client.on("ready", async () =>{
 client.on('messageCreate', async(message) => {
 
     if(!message.author.bot){
-        levelSystem.addXp(message);
+
+        //Appel à la fonction qui gère l'xp
+        levelSystem.addXp(message.author.id, message.guild.id);
+
+        if(message.content.startsWith("!coin")){
+            coinFlip.coinFlip(message.channel);
+        }
+        if(message.content.startsWith("!xp")){
+            levelSystem.showXp(message.author, message.guild.id, message.channel);
+        }
     }
 
 });

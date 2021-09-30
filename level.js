@@ -4,11 +4,10 @@ const Discord = require('discord.js');
 //Import config file
 const config = require("./config.json");
 const fs = require('fs');
-const { Console } = require('console');
 const levelIncreaseCoef = 1.5;
 const requiredXp = 1000;
 
-const addXp = async (message) =>{
+const addXp = async (authorId, guildId) =>{
 
     //Lecture du fichier des profils utilisateurs
     fs.readFile('./userProfile.json', (err, data) => {
@@ -20,12 +19,6 @@ const addXp = async (message) =>{
 
         //date d'aujourd'hui (dd/mm/yyyy)
         let currentDate = (new Date()).toLocaleDateString('en-GB');
-       
-        // Variable: id du serveur sur lequel le message a été écrit
-        let guildId = message.guild.id;
-
-        // Variable: id de l'utilisateur qui a écrit le message
-        let authorId = message.author.id;
        
         // Si l'utilisateur a un profil enregistré
         if(profiles.hasOwnProperty(authorId)){
@@ -112,6 +105,23 @@ const addXp = async (message) =>{
     });
 }
 
+const showXp = async (user, guildId, channel) => {
 
+    fs.readFile('./userProfile.json', (err, data) => {
 
-module.exports.addXp = addXp
+        if (err) throw err;
+        let profiles = JSON.parse(data);
+
+        if(profiles.hasOwnProperty(user.id)){
+            if(profiles[user.id].hasOwnProperty(guildId)){
+                channel.send(user.username + " est niveau " + profiles[user.id][guildId]["level"] + " avec " + profiles[user.id][guildId]["xp"] + " d'xp !");
+                console.log("Showing user's xp and level");
+            }
+        }
+
+    });
+
+}
+
+module.exports.addXp = addXp;
+module.exports.showXp = showXp;
