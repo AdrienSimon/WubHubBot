@@ -120,8 +120,9 @@ const showXp = async (user, guildId, channel) => {
         }
 
     });
-
 }
+
+const levelUp = async(user)
 
 module.exports.addXp = addXp;
 module.exports.showXp = showXp;
