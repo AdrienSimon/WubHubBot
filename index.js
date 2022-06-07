@@ -24,19 +24,15 @@ client.on("ready", async () =>{
 // #
 client.on('messageCreate', async(message) => {
 
-    //check if the message is from a bot       
+    
     if(!message.author.bot){   
 
-        //Check the message if on an authorized channel
         if(message.channel.parentId === config.authorizedChannelcategoryId){
 
-            //Check potential use of command
             if(message.content.startsWith(config.commandPrefix)){
 
-                //Split message content to check parameters
                 let command = message.content.toLowerCase().split(' ');
 
-                // check if user has eventAdmin authorization
                 let hasEventAdminAuthorization = false;
                 for(const roleId of config.authorizedAdminRolesId){
                     if(message.member.roles.cache.some(role => role.id === roleId)){
@@ -48,18 +44,15 @@ client.on('messageCreate', async(message) => {
 
                 let userMentionned = null;
 
-                //Check if command exists
                 switch(command[0]){
 
                     // ############################################################### AddItemToPlayer
                     case config.commands.addItemToPlayer.usage.toLowerCase():
 
-                        //Check authorization
                         if(config.commands.addItemToPlayer.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
 
-                        // Check if mentionned player exists
                         userMentionned = getUserFromMention(command[1]);
                         if(userMentionned == null){
                             message.channel.send("Utilisateur introuvable");
@@ -78,19 +71,16 @@ client.on('messageCreate', async(message) => {
                     // ############################################################### removeItemFromPlayer
                     case config.commands.removeItemFromPlayer.usage.toLowerCase():
 
-                        //Check authorization
                         if(config.commands.removeItemFromPlayer.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
                         
-                          // Check if mentionned player exists
                           userMentionned = getUserFromMention(command[1]);
                           if(userMentionned == null){
                               message.channel.send("Utilisateur introuvable");
                               break;
                           }
             
-                          //set quantity to 1 if not defined
                           if(command.length === 3){
                               inventorySystem.removeItem(client, message.guildId, userMentionned.id, command[2], 1, false, userMentionned, false, message.channel);
                           }
@@ -113,7 +103,6 @@ client.on('messageCreate', async(message) => {
                             inventorySystem.showInventory(client, message.author.id, message.guildId, message.author, message.channel);
                         }
                         else if(command.length === 2){
-                                // Check if mentionned player exists
                             userMentionned = getUserFromMention(command[1]);
                             if(userMentionned == null){
                                 message.channel.send("Utilisateur introuvable");
@@ -169,7 +158,6 @@ client.on('messageCreate', async(message) => {
                             inventorySystem.emptyInventory(client, message.author.id, message.guildId, message.channel);
                         }
                         else if(command.length === 2){
-                                // Check if mentionned player exists
                             userMentionned = getUserFromMention(command[1]);
                             if(userMentionned == null){
                                 break;
