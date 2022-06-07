@@ -28,7 +28,7 @@ client.on('messageCreate', async(message) => {
     if(!message.author.bot){   
 
         //Check the message if on an authorized channel
-        if(message.channel.parentId === config.authorizedChannelId){
+        if(message.channel.parentId === config.authorizedChannelcategoryId){
 
             //Check potential use of command
             if(message.content.startsWith(config.commandPrefix)){

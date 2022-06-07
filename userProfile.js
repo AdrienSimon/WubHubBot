@@ -17,6 +17,7 @@ const requiredXp = 1000;
  * @param {*} userId 
  * @param {*} guildId 
  * @param {*} user 
+ * @param {*} channel 
  */
 const showInventory  = async (client, userId, guildId, user, channel) => {
 
@@ -58,13 +59,15 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
 
 /**
  * 
- * @param {*} client discord Client
- * @param {*} guildId Server ID
- * @param {*} userId user ID
- * @param {*} itemName name of the item
- * @param {*} quantity item quantity
- * @param {*} isUsed if item is used by player or removed by an admin
- * @param {*} user the user concerned by the command
+ * @param {*} client 
+ * @param {*} guildId 
+ * @param {*} userId 
+ * @param {*} itemName 
+ * @param {*} quantity 
+ * @param {*} isUsed 
+ * @param {*} user 
+ * @param {*} silentMode 
+ * @param {*} channel 
  * @returns 
  */
 const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, user, silentMode=false, channel) =>{
@@ -159,6 +162,16 @@ const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, u
     }        
 }
 
+/**
+ * 
+ * @param {*} client 
+ * @param {*} guildId 
+ * @param {*} userId 
+ * @param {*} user 
+ * @param {*} item 
+ * @param {*} channel 
+ * @returns 
+ */
 function openChest(client, guildId, userId, user, item, channel){
 
     let chestTier = null;
@@ -205,6 +218,7 @@ function openChest(client, guildId, userId, user, item, channel){
  * @param {*} client 
  * @param {*} userId 
  * @param {*} guildId 
+ * @param {*} channel 
  */
 const emptyInventory = async (client, userId, guildId, channel) =>{
 
@@ -241,6 +255,8 @@ const emptyInventory = async (client, userId, guildId, channel) =>{
  * @param {*} itemName 
  * @param {*} quantity 
  * @param {*} user 
+ * @param {*} silentMode 
+ * @param {*} channel 
  * @returns 
  */
 const addItem = async (client, guildId, userId, itemName, quantity, user, silentMode=false, channel) =>{
@@ -309,6 +325,12 @@ const addItem = async (client, guildId, userId, itemName, quantity, user, silent
     }  
 }
 
+/**
+ * 
+ * @param {*} min 
+ * @param {*} max 
+ * @returns 
+ */
 function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);

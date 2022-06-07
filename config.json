@@ -7,8 +7,8 @@
   "_commentaire" : "Liste de tout les id des rôles authorisé à utiliser les commandes marqué comme eventAdmin",
   "authorizedAdminRolesId": ["887965887045451786", "983348929154400277"],
 
-  "__commentaire" : "Id du cannal utilisé par le bot",
-  "authorizedChannelId": "887755737919541298",
+  "__commentaire" : "Id de la catégorie utilisé par le bot",
+  "authorizedChannelcategoryId": "887755737919541298",
 
   "___commentaire" : "préfix utilisé pour les commandes. Penser à l'inclure dans 'usage' si vous personnalisez les commandes",
   "commandPrefix": "!",
