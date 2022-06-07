@@ -4,14 +4,66 @@
   "activity": "discord.js",
   "activityType": "WATCHING",
 
-  "roles": [
-    {
-      "roleName": "roleId"
+  "_commentaire" : "Liste de tout les id des rôles authorisé à utiliser les commandes marqué comme eventAdmin",
+  "authorizedAdminRolesId": ["887965887045451786", "983348929154400277"],
+
+  "__commentaire" : "Id du cannal utilisé par le bot",
+  "authorizedChannelId": "887755737919541298",
+
+  "___commentaire" : "préfix utilisé pour les commandes. Penser à l'inclure dans 'usage' si vous personnalisez les commandes",
+  "commandPrefix": "!",
+
+  "embedAuthor": "Bardbot",
+  "embedColor": "#006284",
+  "embedIcon":"https://static.wikia.nocookie.net/leagueoflegends/images/c/cb/Bard_OriginalCircle.png/revision/latest/scale-to-width-down/48?cb=20171112085141",
+
+
+  "____commentaire" : "détails des commandes. la valeur de 'Usage' peut être changé par ce que vous voulez (C'est le nom de la commande à tapper dans le chat). Pour qu'une commande ne soit utilisable que par les eventAdmin, ajoutez la valeur 'eventAdmin' à 'true' ",
+  "commands":{
+
+    "commandList": ["addItemToPlayer", "removeItemFromPlayer", "showInventory", "emptyInventory", "roll", "use", "help"],
+    
+    "addItemToPlayer" : {
+      "usage": "!give",
+      "argument": "@member item-name <quantity>",
+      "description" : "Donne la quantité désiré de l'objet spécifié à l'utilisateur",
+      "eventAdmin" : true
+    },
+    "removeItemFromPlayer": {
+      "usage": "!remove",
+      "argument" :  "@member item-name <quantity>",
+      "description" : "Retire la quantité désiré de l'objet spécifié à l'utilisateur",
+      "eventAdmin": true
+    },
+    "showInventory": {
+      "usage": "!inventory",
+      "argument" : "<@member>",
+      "description" : "Montre son propre inventaire ou celui de l'utilisateur mentionné",
+      "eventAdmin" : true
+    },
+    "emptyInventory" :{
+      "usage" : "!empty",
+      "argument" : "<@member>",
+      "description" : "vide son propre inventaire ou celui de l'utilisateur mentionné",
+      "eventAdmin" : true
+    },
+    "roll": {
+      "usage" : "!roll",
+      "argument" : "<<number-of-dice>d<dice-number>>",
+      "description" : "Jette le nombre de dé indiqué",
+      "eventAdmin" : false
+    },
+    "use" : {
+      "usage" : "!use",
+      "argument": "item-name <quantity>",
+      "description" : "Consomme l'objet",
+      "eventAdmin" : false
+    },
+    "help" :{
+      "usage" : "!help",
+      "argument" : "",
+      "description" : "Donne détail de toute les commandes",
+      "eventAdmin": false
     }
-  ],
-  "channels": [
-    {
-      "channelName": "channelId"
-    }
-  ]
+  }
 }

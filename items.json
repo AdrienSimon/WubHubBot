@@ -1,0 +1,40 @@
+{
+    "items" :[
+        {
+            "name" : "épée",
+            "tier" : "iron"
+        },
+        {
+            "name" : "bouclier",
+            "tier" : "silver"
+        },
+        {
+            "name" : "potion",
+            "tier" : "gold"
+        },
+
+        {
+            "name": "ironChest",
+            "tier": "iron",
+            "effect": "openChest",
+            "minLootNumber": 1,
+            "maxLootNumber": 5
+        },
+        {           
+            "name": "silverChest",
+            "tier": "silver",
+            "effect": "openChest",
+            "minLootNumber": 1,
+            "maxLootNumber": 3
+
+        },
+        {
+            "name": "goldChest",
+            "tier": "gold",
+            "effect": "openChest",
+            "minLootNumber": 1,
+            "maxLootNumber": 2
+        }
+    ]
+
+}
