@@ -36,7 +36,7 @@ function toss_a_coin_to_your_witcher(message) {
                 }
             }
         }
-        
+
         if(isOnAuthorizedChanel){
 
             let command = message.content.toLowerCase();
@@ -93,7 +93,7 @@ function tossCoin(user, channel, isAdmin){
         embedMessage.setImage("attachment://"+ result);
         
         if(!isAdmin){
-            embedMessage.setDescription("prochain lancé possible dans  " + config.coin.cooldownInMs / 60000  + " minutes.");
+            embedMessage.setDescription("prochain lancer possible dans  " + config.coin.cooldownInMs / 60000  + " minutes.");
         }
         channel.send({embeds: [embedMessage], files: [new Discord.MessageAttachment("./images/" + result)] });
 
