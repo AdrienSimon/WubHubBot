@@ -1,7 +1,7 @@
 {
     "items" :[
         {
-            "name" : "épée",
+            "name" : "épée de feu",
             "tier" : "iron"
         },
         {
@@ -12,7 +12,6 @@
             "name" : "potion",
             "tier" : "gold"
         },
-
         {
             "name": "ironChest",
             "tier": "iron",

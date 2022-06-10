@@ -5,7 +5,7 @@
   "activityType": "WATCHING",
 
   "_commentaire" : "Liste de tout les id des rôles authorisé à utiliser les commandes marqué comme eventAdmin",
-  "authorizedAdminRolesId": ["887965887045451786", "983348929154400277"],
+  "authorizedAdminRolesId": ["887965887045451786", "983348929154400277","983348929154400277"],
 
   "__commentaire" : "Id de la catégorie utilisé par le bot",
   "authorizedChannelcategoryId": "887755737919541298",
@@ -65,5 +65,15 @@
       "description" : "Donne détail de toute les commandes",
       "eventAdmin": false
     }
+  },
+
+  "coin" : {
+    "coinHeadImage" : "head.PNG",
+    "coinTailImage" : "tail.PNG",
+    "authorizedChannelsId" : ["983338211168366635" ,"893155640162287727", "890567666048311306"],
+    "authorizedCategoriesId": ["887755737919541298"],
+    "adminRolesId" : ["984517611737989181" ,"984811333633581076"],
+    "commandName" : "!coin",
+    "cooldownInMs" : 60000
   }
 }

@@ -43,7 +43,6 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
                 for(var item in profiles[userId][guildId]["inventory"]){
                     str +=  "**" + profiles[userId][guildId]["inventory"][item] + "** `" + item + "`\n\n";
                 }
-
                 embedMessage.setDescription(str);
                 channel.send({embeds: [embedMessage]});
             }
@@ -53,8 +52,7 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
 
         }else{
             channel.send("<@" + userId + "> n'a pas encore d'inventaire ! ");
-        } 
-
+        }  
 }
 
 /**
@@ -70,16 +68,13 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
  * @param {*} channel 
  * @returns 
  */
-const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, user, silentMode=false, channel) =>{
-
-    
+const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, user, silentMode=false, channel) =>{ 
     quantity = parseInt(quantity);
     if(!Number.isInteger(quantity)){
         channel.send("Quantité invalide");
         return;
     }
 
-    
     var profiles = fs.readFileSync('./userProfile.json', 'utf8');
     profiles = JSON.parse(profiles);
 

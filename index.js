@@ -9,6 +9,7 @@ const config = require("./config.json");
 const client = new Discord.Client({ intents: ["GUILDS", "GUILD_MESSAGES"] });
 //import inventory management functions
 const inventorySystem = require("./userProfile.js");
+const toss = require("./tossCoin.js");
 //import FileSystem library
 const fs = require('fs');
 
@@ -24,6 +25,7 @@ client.on("ready", async () =>{
 // #
 client.on('messageCreate', async(message) => {
 
+    toss.tossCoin(message);
     
     if(!message.author.bot){   
 
@@ -96,7 +98,6 @@ client.on('messageCreate', async(message) => {
                         if(config.commands.showInventory.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
-                    
                     
 
                         if(command.length === 1){
@@ -218,7 +219,6 @@ client.on('messageCreate', async(message) => {
                             
                         }
                         break;
-                    
                 }
             }
         }       
