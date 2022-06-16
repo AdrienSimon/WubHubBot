@@ -12,8 +12,10 @@
         },
         "887751007612862464": {
             "inventory": {
-                "bouclier": 3,
-                "épée de feu": 0
+                "ironchest": 0,
+                "potion": 11124,
+                "bouclier": 11138,
+                "épée de feu": 11156
             }
         }
     }

@@ -6,11 +6,11 @@
         },
         {
             "name" : "bouclier",
-            "tier" : "silver"
+            "tier" : "iron"
         },
         {
             "name" : "potion",
-            "tier" : "gold"
+            "tier" : "iron"
         },
         {
             "name": "ironChest",

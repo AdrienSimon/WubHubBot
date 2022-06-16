@@ -1,15 +1,9 @@
-
-//Import discord.js library
 //Import discord.js library
 const Discord = require('discord.js');
-
 const config = require("./config.json");
 
 const head_image = config.coin.coinHeadImage;
 const tail_image = config.coin.coinTailImage;
-
-
-
 const tossedRecently = new Set();
 
 
@@ -27,7 +21,6 @@ function toss_a_coin_to_your_witcher(message) {
                 break;
             }
         }
-
         if(!isOnAuthorizedChanel){
             for(const categorieId of config.coin.authorizedCategoriesId){
                 if(categorieId === message.channel.parentId){
@@ -38,7 +31,6 @@ function toss_a_coin_to_your_witcher(message) {
         }
 
         if(isOnAuthorizedChanel){
-
             let command = message.content.toLowerCase();
             if(command === config.coin.commandName ){
 
@@ -69,12 +61,10 @@ function toss_a_coin_to_your_witcher(message) {
  */
 function tossCoin(user, channel, isAdmin){
 
-    
     if (!isAdmin && tossedRecently.has(user.id)) {
        return;
     } 
     else {
-
         const embedMessage = new Discord.MessageEmbed();
         let result = "";
         if(Math.floor(Math.random() * 2) === 1){
@@ -104,8 +94,4 @@ function tossCoin(user, channel, isAdmin){
 
     }
 }
-
-
-
-
   module.exports.tossCoin = toss_a_coin_to_your_witcher;

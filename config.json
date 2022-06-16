@@ -64,6 +64,12 @@
       "argument" : "",
       "description" : "Donne détail de toute les commandes",
       "eventAdmin": false
+    },
+    "info":{
+      "usage": "!info",
+      "argument": "itemName",
+      "description": "Donne les informations lié à un objet",
+      "eventAdmin": false
     }
   },
 
