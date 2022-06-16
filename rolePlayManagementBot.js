@@ -11,18 +11,8 @@ const { Channel } = require('diagnostics_channel');
 const levelIncreaseCoef = 1.5;
 const requiredXp = 1000;
 
-/**
- * 
- * @param {*} client 
- * @param {*} userId 
- * @param {*} guildId 
- * @param {*} user 
- * @param {*} channel 
- */
-
 const proccessMessage = async(message, client) =>{
     if(!message.author.bot){   
-
         if(message.channel.parentId === config.authorizedChannelcategoryId){
 
             if(message.content.startsWith(config.commandPrefix)){
@@ -295,7 +285,7 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
 }
 
 const showItemInformation = async(client, item, channel) => {
-    
+
 }
 
 const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, user, silentMode=false, channel) =>{ 
