@@ -64,8 +64,18 @@ client.on('messageCreate', async(message) => {
                         if(command.length === 3){
                             inventorySystem.addItem(client, message.guildId, userMentionned.id, command[2], 1, userMentionned, false, message.channel);
                         }
-                        else if(command.length === 4){
+                        else if(command.length === 4 && !isNaN(command[3])){
                             inventorySystem.addItem(client, message.guildId, userMentionned.id, command[2], command[3], userMentionned, false, message.channel);
+                        }
+                        else if(command.length > 4){
+                            if(!isNaN(command[(command.length - 1)])){
+                                let itemName = command.slice(2, command.length - 1).join(' ');
+                                inventorySystem.addItem(client, message.guildId, userMentionned.id, itemName, command[command.length - 1], userMentionned, false, message.channel);
+                            }
+                            else{
+                                let itemName = command.slice(2).join(' ');
+                                inventorySystem.addItem(client, message.guildId, userMentionned.id, itemName, 1, userMentionned, false, message.channel);
+                            }
                         }
                         break;
 
@@ -87,9 +97,20 @@ client.on('messageCreate', async(message) => {
                               inventorySystem.removeItem(client, message.guildId, userMentionned.id, command[2], 1, false, userMentionned, false, message.channel);
                           }
                           
-                          else if(command.length === 4){
+                          else if(command.length === 4 && !isNaN(command[3])){
                               inventorySystem.removeItem(client, message.guildId, userMentionned.id, command[2], command[3], false, userMentionned, false, message.channel);
                           }
+                          else if(command.length > 4){
+                            if(!isNaN(command[command.length - 1])){
+                                let itemName = command.slice(2, command.length - 1).join(' ');
+                                inventorySystem.removeItem(client, message.guildId, userMentionned.id, itemName, command[command.length -1], false, userMentionned, false, message.channel);
+                            }
+                            else{
+                                let itemName = command.slice(2).join(' ');
+                                inventorySystem.removeItem(client, message.guildId, userMentionned.id, itemName, 1, false, userMentionned, false, message.channel);
+                            }
+                           
+                        }
                           break;
 
                     // ############################################################### showInventory
@@ -209,14 +230,26 @@ client.on('messageCreate', async(message) => {
                         if(config.commands.use.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
-                        if(command.length === 3){
+                        if(command.length === 3 && !isNaN(command[2])){
                             inventorySystem.removeItem(client, message.guildId, message.author.id, command[1], command[2], true, message.author, false, message.channel);
                             
                         }
                         if(command.length === 2){
+
+                    
                             inventorySystem.removeItem(client, message.guildId, message.author.id, command[1], 1, true, message.author, false, message.channel);
                             
                             
+                        }
+                        if(command.length > 3){
+                            if(!isNaN(command[command.length - 1])){
+                                itemName = command.slice(1, command.length - 1).join(' ');
+                                inventorySystem.removeItem(client, message.guildId, message.author.id, itemName, command[command.length - 1], true, message.author, false, message.channel);
+                            }
+                            else{
+                                itemName = command.slice(1).join(' ');
+                                inventorySystem.removeItem(client, message.guildId, message.author.id, itemName, 1, true, message.author, false, message.channel);
+                            }
                         }
                         break;
                 }
