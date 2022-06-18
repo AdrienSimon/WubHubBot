@@ -2,11 +2,13 @@
     "items" :[
         {
             "name" : "épée de feu",
-            "tier" : "iron"
+            "tier" : "iron",
+            "description" : "C'est une épée qui brûle .. le feu ça brûle"
         },
         {
             "name" : "bouclier",
-            "tier" : "iron"
+            "tier" : "iron",
+            "image" : "bouclier.jpg"
         },
         {
             "name" : "potion",

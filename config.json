@@ -17,6 +17,7 @@
   "embedColor": "#006284",
   "embedIcon":"https://static.wikia.nocookie.net/leagueoflegends/images/c/cb/Bard_OriginalCircle.png/revision/latest/scale-to-width-down/48?cb=20171112085141",
 
+  "defaultItemDescription" : "Sérieusement ? Vous avez besoin d'une description  ... ?",
 
   "____commentaire" : "détails des commandes. la valeur de 'Usage' peut être changé par ce que vous voulez (C'est le nom de la commande à tapper dans le chat). Pour qu'une commande ne soit utilisable que par les eventAdmin, ajoutez la valeur 'eventAdmin' à 'true' ",
   "commands":{
@@ -24,49 +25,49 @@
     "commandList": ["addItemToPlayer", "removeItemFromPlayer", "showInventory", "emptyInventory", "roll", "use", "help"],
     
     "addItemToPlayer" : {
-      "usage": "!give",
+      "usage": "give",
       "argument": "@member item-name <quantity>",
       "description" : "Donne la quantité désiré de l'objet spécifié à l'utilisateur",
       "eventAdmin" : true
     },
     "removeItemFromPlayer": {
-      "usage": "!remove",
+      "usage": "remove",
       "argument" :  "@member item-name <quantity>",
       "description" : "Retire la quantité désiré de l'objet spécifié à l'utilisateur",
       "eventAdmin": true
     },
     "showInventory": {
-      "usage": "!inventory",
+      "usage": "inventory",
       "argument" : "<@member>",
       "description" : "Montre son propre inventaire ou celui de l'utilisateur mentionné",
       "eventAdmin" : true
     },
     "emptyInventory" :{
-      "usage" : "!empty",
+      "usage" : "empty",
       "argument" : "<@member>",
       "description" : "vide son propre inventaire ou celui de l'utilisateur mentionné",
       "eventAdmin" : true
     },
     "roll": {
-      "usage" : "!roll",
+      "usage" : "roll",
       "argument" : "<<number-of-dice>d<dice-number>>",
       "description" : "Jette le nombre de dé indiqué",
       "eventAdmin" : false
     },
     "use" : {
-      "usage" : "!use",
+      "usage" : "use",
       "argument": "item-name <quantity>",
       "description" : "Consomme l'objet",
       "eventAdmin" : false
     },
     "help" :{
-      "usage" : "!help",
+      "usage" : "help",
       "argument" : "",
       "description" : "Donne détail de toute les commandes",
       "eventAdmin": false
     },
     "info":{
-      "usage": "!info",
+      "usage": "info",
       "argument": "itemName",
       "description": "Donne les informations lié à un objet",
       "eventAdmin": false
@@ -79,7 +80,7 @@
     "authorizedChannelsId" : ["983338211168366635" ,"893155640162287727", "890567666048311306"],
     "authorizedCategoriesId": ["887755737919541298"],
     "adminRolesId" : ["984517611737989181" ,"984811333633581076"],
-    "commandName" : "!coin",
+    "commandName" : "coin",
     "cooldownInMs" : 60000
   }
 }

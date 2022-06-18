@@ -77,7 +77,6 @@ function tossCoin(user, channel, isAdmin){
         }
         
         embedMessage.setColor(config.embedColor);
-        
         embedMessage.setAuthor({name: config.embedAuthor, iconURL: config.embedIcon});
         embedMessage.setThumbnail(user.avatarURL());
         embedMessage.setImage("attachment://"+ result);

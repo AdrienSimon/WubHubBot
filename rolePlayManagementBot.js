@@ -7,7 +7,7 @@ const items = require("./items.json");
 const fs = require('fs');
 const { Console } = require('console');
 const { exit } = require('process');
-const { Channel } = require('diagnostics_channel');
+const { Channel, channel } = require('diagnostics_channel');
 const levelIncreaseCoef = 1.5;
 const requiredXp = 1000;
 
@@ -30,8 +30,10 @@ const proccessMessage = async(message, client) =>{
 
                 switch(command[0]){
 
+
+
                     // ############################################################### AddItemToPlayer
-                    case config.commands.addItemToPlayer.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.addItemToPlayer.usage.toLowerCase():
 
                         if(config.commands.addItemToPlayer.eventAdmin && !hasEventAdminAuthorization){
                             break;
@@ -63,7 +65,7 @@ const proccessMessage = async(message, client) =>{
 
 
                     // ############################################################### removeItemFromPlayer
-                    case config.commands.removeItemFromPlayer.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.removeItemFromPlayer.usage.toLowerCase():
 
                         if(config.commands.removeItemFromPlayer.eventAdmin && !hasEventAdminAuthorization){
                             break;
@@ -96,7 +98,7 @@ const proccessMessage = async(message, client) =>{
                           break;
 
                     // ############################################################### showInventory
-                    case config.commands.showInventory.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.showInventory.usage.toLowerCase():
 
                         if(config.commands.showInventory.eventAdmin && !hasEventAdminAuthorization){
                             break;
@@ -118,7 +120,7 @@ const proccessMessage = async(message, client) =>{
 
                     
                     // ############################################################### Roll 
-                    case config.commands.roll.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.roll.usage.toLowerCase():
 
                         if(config.commands.roll.eventAdmin && !hasEventAdminAuthorization){
                             break;
@@ -153,7 +155,7 @@ const proccessMessage = async(message, client) =>{
                         break;
 
                     // ############################################################### emptyInventory
-                    case config.commands.emptyInventory.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.emptyInventory.usage.toLowerCase():
                         if(config.commands.emptyInventory.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
@@ -173,7 +175,7 @@ const proccessMessage = async(message, client) =>{
                         break;
 
                     // ############################################################### Help
-                    case config.commands.help.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.help.usage.toLowerCase():
 
                     if(config.commands.help.eventAdmin && !hasEventAdminAuthorization){
                         break;
@@ -193,7 +195,7 @@ const proccessMessage = async(message, client) =>{
                                     for(const command of commandList){
                                         if(commands[command]["eventAdmin"]){
                                             if(hasEventAdminAuthorization){
-                                                str += "`" + commands[command]["usage"] + " " + commands[command]["argument"] + "`\n" + " - " + commands[command]["description"] +"\n\n";
+                                                str += "`" + config.commandPrefix + commands[command]["usage"] + " " + commands[command]["argument"] + "`\n" + " - " + commands[command]["description"] +"\n\n";
                                             }
                                             
                                         } else{
@@ -207,7 +209,7 @@ const proccessMessage = async(message, client) =>{
                         });
                         break;
                     // ############################################################### Use
-                    case config.commands.use.usage.toLowerCase():
+                    case config.commandPrefix + config.commands.use.usage.toLowerCase():
 
                         if(config.commands.use.eventAdmin && !hasEventAdminAuthorization){
                             break;
@@ -235,10 +237,15 @@ const proccessMessage = async(message, client) =>{
                         }
                         break;
 
-                    case config.commands.info.usage.toLowerCase():
+                    // #################################################### info
+                    case config.commandPrefix + config.commands.info.usage.toLowerCase():
 
                         if(command.length === 2){
-                            showItemInformation();
+                            showItemInformation(command[1], message.channel);
+                        }
+                        else if(command.length > 2){
+                            itemName = command.slice(1).join(' ');
+                            showItemInformation(itemName, message.channel);
                         }
                         break;
                 }
@@ -284,9 +291,39 @@ const showInventory  = async (client, userId, guildId, user, channel) => {
         }  
 }
 
-const showItemInformation = async(client, item, channel) => {
-
+const showItemInformation = async(itemName, channel) => {
+    let item = null;
+    for(const element of items.items){
+        if(element.name.toLowerCase() == itemName.toLowerCase()){
+            item = element;
+            break;
+        }
+    }
+    if(item === null){
+        channel.send("Item inconnu");
+        return;
+    }    
+    description = "";
+    const embedMessage = new Discord.MessageEmbed();
+        embedMessage.setTitle(item.name);
+        embedMessage.setColor(config.embedColor);
+        embedMessage.setAuthor({name: config.embedAuthor, iconURL: config.embedIcon});
+    if(item.hasOwnProperty("description")){
+        description = item.description;
+    }
+    else{
+        description = config.defaultItemDescription;
+    }
+    embedMessage.setDescription(description);
+    if(item.hasOwnProperty("image")){
+        embedMessage.setThumbnail("attachment://"+ item.image);
+        channel.send({embeds: [embedMessage], files: [new Discord.MessageAttachment("./images/" + item.image)] });
+    }
+    else{
+        channel.send({embeds: [embedMessage]});
+    }
 }
+
 
 const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, user, silentMode=false, channel) =>{ 
     quantity = parseInt(quantity);
@@ -377,8 +414,7 @@ const removeItem = async (client, guildId, userId, itemName, quantity, isUsed, u
             }
             else if(!silentMode){
                 showInventory(client, userId, guildId, user, channel);
-            }
-            
+            }   
         }
         else{
             channel.send(" <@" + userId + "> a perdu " + quantity + " " + itemName);
