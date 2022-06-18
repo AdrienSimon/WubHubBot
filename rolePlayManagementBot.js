@@ -199,7 +199,7 @@ const proccessMessage = async(message, client) =>{
                                             }
                                             
                                         } else{
-                                            str += "`" + commands[command]["usage"] + " " + commands[command]["argument"] + "`\n" + " - " + commands[command]["description"] +"\n\n";
+                                            str += "`" + config.commandPrefix + commands[command]["usage"] + " " + commands[command]["argument"] + "`\n" + " - " + commands[command]["description"] +"\n\n";
                                         }   
                                     }
                                     embedMessage.setDescription(str);
