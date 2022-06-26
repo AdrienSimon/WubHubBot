@@ -13,12 +13,15 @@ const requiredXp = 1000;
 
 const proccessMessage = async(message, client) =>{
     if(!message.author.bot){   
-        if(message.channel.parentId === config.authorizedChannelcategoryId){
-
+        let isOnAuthorizedChanel = false;
+        for(const categorieId of config.authorizedChannelcategoryId){
+            if(message.channel.parentId === categorieId){
+                isOnAuthorizedChanel = true;
+            }
+        }
+        if(isOnAuthorizedChanel){
             if(message.content.startsWith(config.commandPrefix)){
-
                 let command = message.content.toLowerCase().split(' ');
-
                 let hasEventAdminAuthorization = false;
                 for(const roleId of config.authorizedAdminRolesId){
                     if(message.member.roles.cache.some(role => role.id === roleId)){
@@ -27,14 +30,10 @@ const proccessMessage = async(message, client) =>{
                     }
                 }
                 let userMentionned = null;
-
                 switch(command[0]){
-
-
 
                     // ############################################################### AddItemToPlayer
                     case config.commandPrefix + config.commands.addItemToPlayer.usage.toLowerCase():
-
                         if(config.commands.addItemToPlayer.eventAdmin && !hasEventAdminAuthorization){
                             break;
                         }
@@ -187,7 +186,6 @@ const proccessMessage = async(message, client) =>{
                             embedMessage.setTitle("*Commandes disponibles :*");
                             embedMessage.setAuthor({name: config.embedAuthor, iconURL: config.embedIcon});
                             let str = "";
-                            let parsedConfig = JSON.parse(data);
                             if(config.hasOwnProperty("commands")){
                                 let commands = config["commands"];
                                 if(commands.hasOwnProperty("commandList")){
@@ -248,6 +246,11 @@ const proccessMessage = async(message, client) =>{
                             showItemInformation(itemName, message.channel);
                         }
                         break;
+
+                    // #################################################### loadPlayerStats
+                    case config.commandPrefix + config.commands.loadPlayerStats.usage.toLowerCase():
+                        loadPlayerStats();
+                        break;
                 }
             }
         }       
@@ -255,7 +258,11 @@ const proccessMessage = async(message, client) =>{
 }
 
 
-const showInventory  = async (client, userId, guildId, user, channel) => {
+const loadPlayerStats = async() =>{
+
+}
+
+const showInventory = async (client, userId, guildId, user, channel) => {
 
     var profiles = fs.readFileSync('./userProfile.json', 'utf8');
     profiles = JSON.parse(profiles);
